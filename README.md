@@ -29,7 +29,6 @@
 - [Error Handling](#error-handling)
 - [Data Model](#data-model)
 - [Validation](#validation)
-- [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -317,19 +316,6 @@ Validation is enforced on **both** sides of the stack:
 
 - **Backend** (`src/validators/url.validator.ts`) — a Zod schema, `z.string().url("Please provide a valid URL")`, is applied through the `validate` middleware before the request reaches the controller.
 - **Frontend** (`client/src/App.tsx`) — the same rule is enforced client-side before any network request, so users get immediate feedback with the identical message.
-
----
-
-## Roadmap
-
-Some ideas for the future:
-
-- [ ] Configurable custom short codes
-- [ ] URL expiration / TTL support
-- [ ] Analytics dashboard (per-link click charts)
-- [ ] Rate limiting and abuse protection
-- [ ] QR-code generation for short links
-- [ ] Docker Compose setup for one-command startup
 
 ---
 
