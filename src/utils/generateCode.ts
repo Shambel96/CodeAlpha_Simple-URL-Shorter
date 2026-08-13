@@ -1,14 +1,16 @@
-const characters =
+import { randomInt } from "node:crypto";
+
+const CHARACTERS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 export function generateCode(length = 6): string {
-  let code = "";
+  let result = "";
 
   for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
+    const index = randomInt(CHARACTERS.length);
 
-    code += characters[randomIndex];
+    result += CHARACTERS[index];
   }
 
-  return code;
+  return result;
 }
