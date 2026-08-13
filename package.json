@@ -1,0 +1,34 @@
+{
+  "name": "codealpha_simple-url-shorter",
+  "version": "1.0.0",
+  "description": "Code alpha intership task-1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shambel96/CodeAlpha_Simple-URL-Shorter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shambel96/CodeAlpha_Simple-URL-Shorter/issues"
+  },
+  "homepage": "https://github.com/Shambel96/CodeAlpha_Simple-URL-Shorter#readme",
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.9.1",
+    "@prisma/client": "^7.9.1",
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.2.1",
+    "prisma": "^7.9.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
