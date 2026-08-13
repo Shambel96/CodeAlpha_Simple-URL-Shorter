@@ -1,18 +1,24 @@
 import { prisma } from "../lib/prisma.js";
 import { generateCode } from "../utils/generateCode.js";
 
-export async function createShortUrl(originalUrl: string) {
-  let code: string;
+async function generateUniqueCode(): Promise<string> {
+  while (true) {
+    const code = generateCode();
 
-  do {
-    code = generateCode();
-  } while (
-    await prisma.url.findUnique({
+    const existingUrl = await prisma.url.findUnique({
       where: {
         code,
       },
-    })
-  );
+    });
+
+    if (!existingUrl) {
+      return code;
+    }
+  }
+}
+
+export async function createShortUrl(originalUrl: string) {
+  const code = await generateUniqueCode();
 
   return prisma.url.create({
     data: {
