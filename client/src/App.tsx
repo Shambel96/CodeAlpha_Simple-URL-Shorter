@@ -1,4 +1,5 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 
 interface ShortUrl {
   id: number;
@@ -13,11 +14,26 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  function isValidUrl(value: string) {
+    try {
+      new URL(value);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError("");
     setShortUrl("");
+
+    if (!isValidUrl(url)) {
+      setError("Please provide a valid URL");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -69,7 +85,10 @@ function App() {
             type="url"
             placeholder="https://example.com/very/long/url"
             value={url}
-            onChange={(event) => setUrl(event.target.value)}
+            onChange={(event) => {
+              setUrl(event.target.value);
+              setError("");
+            }}
             required
           />
 
