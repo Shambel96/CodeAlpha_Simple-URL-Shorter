@@ -4,18 +4,11 @@ import {
   findUrlByCode,
   incrementClicks,
 } from "../services/url.service.js";
+import { AppError } from "../errors/AppError.js";
 
 export async function createUrl(req: Request, res: Response) {
   const { url } = req.body;
-
-  if (!url) {
-    return res.status(400).json({
-      message: "URL is required",
-    });
-  }
-
   const savedUrl = await createShortUrl(url);
-
   return res.status(201).json({
     data: savedUrl,
   });
@@ -27,12 +20,9 @@ export async function redirectUrl(req: Request, res: Response) {
   const url = await findUrlByCode(code);
 
   if (!url) {
-    return res.status(404).json({
-      message: "Short URL not found",
-    });
+    throw new AppError("Short URL not found", 404);
   }
 
   await incrementClicks(url.id);
-
   return res.redirect(url.originalUrl);
 }
