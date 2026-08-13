@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Url {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique
+  originalUrl String
+  clicks      Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
